@@ -56,7 +56,7 @@ public class NewBehaviourScript : MonoBehaviour
         //float distance = Vector2.Distance(transform.position, _followtarget.position);
         if(_followtarget && ! _isCollided)
         {
-            _rb.MovePosition(transform.position - _followtarget.position * speed * Time.deltaTime);
+           transform.position = Vector2.MoveTowards(transform.position,_followtarget.position,speed * Time.deltaTime);
         }
     }
 

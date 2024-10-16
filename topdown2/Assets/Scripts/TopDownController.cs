@@ -7,6 +7,8 @@ using UnityEngine.Scripting.APIUpdating;
 public class TopDownController : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private GameObject bulletprefab;
+    [SerializeField] private Transform firepoint;
     private Rigidbody2D _rb;
 
     private void Awake()
@@ -26,5 +28,13 @@ public class TopDownController : MonoBehaviour
 
         Vector2 moveDirection = new Vector2(moveX, moveY).normalized;
         _rb.velocity = moveDirection * speed;
+    }
+    private void Shoot()
+    {
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            Instantiate(bulletprefab, firepoint.position, transform.rotation);
+
+        }
     }
 }

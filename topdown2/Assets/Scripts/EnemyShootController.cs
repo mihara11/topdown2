@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class EnemyShootController : MonoBehaviour
@@ -37,9 +38,12 @@ public class EnemyShootController : MonoBehaviour
     }
     private void Shoot()
     {
+        Quaternion bulletrotation = firePoint.rotation;
         if (isAiming)
         {
-            firePoint.LookAt(_player);
+            Vector2 direction = _player.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x)* Mathf.Rad2Deg;
+            bulletrotation = Quaternion.Euler(new Vector3(0, 0, angle - 90f));
         }
 
         Instantiate(bulletPrefab,firePoint.position,firePoint.rotation);

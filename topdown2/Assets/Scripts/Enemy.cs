@@ -11,6 +11,8 @@ public class NewBehaviourScript : MonoBehaviour
     //[SerializeField] private float minFollowDistance;
     private Rigidbody2D _rb;
     private Transform _followtarget;
+    [SerializeField] private LayerMask damagelayerMask;
+
 
     private bool _isCollided;
 
@@ -31,6 +33,11 @@ public class NewBehaviourScript : MonoBehaviour
         {
             _isCollided = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        if (LayerMaskUtil.ContainsLayer(damagelayerMask, collision.gameObject))
+        {
+            gameObject.SetActive(false);
         }
     }
 

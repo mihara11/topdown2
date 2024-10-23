@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Scripting.APIUpdating;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class TopDownController : MonoBehaviour
@@ -11,6 +12,7 @@ public class TopDownController : MonoBehaviour
     [SerializeField] private GameObject bulletprefab;
     [SerializeField] private Transform firepoint;
     [SerializeField] private LayerMask damagelayerMask;
+    [SerializeField] private Camera _mainCamera;
     private Rigidbody2D _rb;
 
     private void Awake()
@@ -36,6 +38,11 @@ public class TopDownController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) 
         {
+            Vector3 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0;
+            Vector2 direction = mousePosition - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion bulletrotation = Quaternion.Euler(new Vector3(0, 0, angle - 90f));
             Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
             Debug.Log("Shoot");
 

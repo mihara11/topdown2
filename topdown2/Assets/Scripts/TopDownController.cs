@@ -12,12 +12,13 @@ public class TopDownController : MonoBehaviour
     [SerializeField] private GameObject bulletprefab;
     [SerializeField] private Transform firepoint;
     [SerializeField] private LayerMask damagelayerMask;
-    [SerializeField] private Camera _mainCamera;
+    private Camera _mainCamera;
     private Rigidbody2D _rb;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _mainCamera = Camera.main;
     }
 
     private void Update()
@@ -43,7 +44,7 @@ public class TopDownController : MonoBehaviour
             Vector2 direction = mousePosition - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion bulletrotation = Quaternion.Euler(new Vector3(0, 0, angle - 90f));
-            Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
+            Instantiate(bulletprefab, firepoint.position, bulletrotation);
             Debug.Log("Shoot");
 
         }

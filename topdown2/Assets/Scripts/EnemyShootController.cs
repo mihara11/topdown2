@@ -46,6 +46,6 @@ public class EnemyShootController : MonoBehaviour
             bulletrotation = Quaternion.Euler(new Vector3(0, 0, angle - 90f));
         }
 
-        Instantiate(bulletPrefab,firePoint.position,firePoint.rotation);
+        Instantiate(bulletPrefab,firePoint.position, bulletrotation);
     }
 }

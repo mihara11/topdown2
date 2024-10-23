@@ -11,37 +11,16 @@ public class bullet : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lifetime;
     private Rigidbody2D _rb;
-    private float currLifeTime;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        currLifeTime = lifetime;
-
         Destroy(gameObject, lifetime);
     }
-
-
-    //void Update()
-    //{
-    //    CheckLifeTime();
-    //}
 
     private void FixedUpdate()
     {
         Move();
     }
-
-    //private void CheckLifeTime()
-    //{
-    //    if(currLifeTime <= 0)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //    else
-    //    {
-    //        currLifeTime -= Time.deltaTime;
-    //    }
-    //}
 
     private void Move()
     {

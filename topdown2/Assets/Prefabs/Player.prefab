@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8414732446150187460}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6754950362472586896}
   - component: {fileID: 8132235399156433872}
   - component: {fileID: 8809019110089169532}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 9056683730306894326}
   - component: {fileID: 756309121228046031}
   - component: {fileID: 9002007125499245723}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  bulletprefab: {fileID: 0}
+  firepoint: {fileID: 0}
 --- !u!50 &756309121228046031
 Rigidbody2D:
   serializedVersion: 4

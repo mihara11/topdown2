@@ -21,6 +21,7 @@ public class TopDownController : MonoBehaviour
     private void Update()
     {
         Move();
+        Shoot();
     }
 
     private void Move()
@@ -35,7 +36,8 @@ public class TopDownController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) 
         {
-            Instantiate(bulletprefab, firepoint.position, transform.rotation);
+            Instantiate(bulletprefab, firepoint.position, firepoint.rotation);
+            Debug.Log("Shoot");
 
         }
     }

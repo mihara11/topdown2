@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class bullet : MonoBehaviour
 {
-
+    public float _hp;
     [SerializeField] private float speed;
     [SerializeField] private float lifetime;
     private Rigidbody2D _rb;
@@ -29,7 +29,11 @@ public class bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!collision.gameObject.TryGetComponent(out TopDownController _))
+        GameObject go = GameObject.Find("Box");
+        Box_Script boxscript = go.GetComponent<Box_Script>();
+        if(!collision.gameObject.TryGetComponent(out TopDownController _) && _hp <=0)
             Destroy(gameObject);
+        _hp = boxscript.hp - 1;
+        
     }
 }

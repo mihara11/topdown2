@@ -33,7 +33,7 @@ public class bullet : MonoBehaviour
         Box_Script boxscript = go.GetComponent<Box_Script>();
         if(!collision.gameObject.TryGetComponent(out TopDownController _) && _hp <=0)
             Destroy(gameObject);
-        _hp = boxscript.hp - 1;
+ 
         
     }
 }

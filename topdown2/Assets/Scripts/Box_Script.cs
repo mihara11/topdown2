@@ -5,23 +5,51 @@ using UnityEngine.SceneManagement;
 
 public class Box_Script : MonoBehaviour
 {
-    [SerializeField] public int hp;
-    [SerializeField] private LayerMask damagelayerMask;
+    public int health = 5; // Количество очков здоровья коробки
+    public GameObject splinterPrefab; // Префаб щепки
+    public int splinterCount = 5; // Количество щепок при разрушении коробки
+    public float splinterForce = 5f; // Сила разлета щепок
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    // Метод, вызываемый при попадании по коробке
+    public void TakeDamage(int damage)
     {
-        GameObject go = GameObject.Find("Bullet 1");
-        bullet bulletscript = go.GetComponent<bullet>();
-
-        if (LayerMaskUtil.ContainsLayer(damagelayerMask, collision.gameObject) && bulletscript._hp <= 0)
+        health -= damage;
+        Debug.Log("-1");
+        if (health <= 0)
         {
-            gameObject.SetActive(false);
+            DestroyBox();
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    // Метод для разрушения коробки и создания щепок
+    private void DestroyBox()
     {
-        
+        for (int i = 0; i < splinterCount; i++)
+        {
+            // Создаем щепку
+            GameObject splinter = Instantiate(splinterPrefab, transform.position, Random.rotation);
+            // Получаем Rigidbody щепки для добавления силы разлета
+            Rigidbody rb = splinter.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                // Применяем силу разлета к щепке
+                Vector3 randomDirection = Random.insideUnitSphere.normalized;
+                rb.AddForce(randomDirection * splinterForce, ForceMode.Impulse);
+            }
+        }
+
+        // Уничтожаем объект коробки
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Проверка попадания по коробке пулей (на примере объекта с тегом "Bullet")
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            TakeDamage(1); // Отнимаем 1 HP при попадании пули
+            Destroy(collision.gameObject); // Уничтожаем пулю
+            Debug.Log("-1");
+        }
     }
 }

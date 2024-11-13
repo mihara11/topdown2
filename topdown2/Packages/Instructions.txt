@@ -1,0 +1,4 @@
+1. Создайте 4 новых слоя - Player(как 3 слой), Enemy(как 6 слой), Player Bullet(как 7 слой) и Enemy Bullet(как 8 слой)
+2. Назначьте слои на одноименные обьекты
+3. Отключите пересечение слоев Player|Pдфнук Bullet и Enemy|Enemy Bullet в матрице слоев(Edit - project settings - physics 2d - layer matrix)
+4. Вы крутой чечил44)
